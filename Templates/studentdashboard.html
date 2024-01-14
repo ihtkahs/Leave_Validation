@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{pth}}/studentdb.css">
+</head>
+<body>
+    <h1>Student Dashboard</h1>
+
+    <div>
+        <h2>Student Details</h2>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Department:</strong> {{ department }}</p>
+        <p><strong>Roll No:</strong> {{ roll_no }}</p>
+        <p><strong>Registration No:</strong> {{ reg_no }}</p>
+        <p><strong>Section:</strong> {{ section }}</p>
+        <p><strong>Number of Leaves Taken:</strong> {{ leaves_taken }}</p>
+    </div>
+
+    <div>
+        <h2>Apply Leave</h2>
+        <div id="leaveTypeButtons">
+            <button type="button" onclick="selectSingleDay()">One Day</button>
+            <button type="button" onclick="selectMultipleDays()">Multiple Days</button>
+        </div><br><br>
+        <div id="singleDayForm" style="display: none;">
+            <form action="/apply_leave_one" method="post" onsubmit="return validateFormOne()">
+                <label for="reasonSingle">Reason:</label>
+                <input type="text" id="reasonSingle" name="reasonSingle" required><br><br>
+                <label for="Date">Date:</label>
+                <input type="date" id="Date" name="Date" required><br><br>
+                <input type="submit" value="Apply Leave">
+            </form>
+        </div>
+        <div id="multipleDaysForm" style="display: none;">
+            <form action="/apply_leave_multiple" method="post" onsubmit="return validateFormMultiple()">
+                <label for="reasonMultiple">Reason:</label>
+                <input type="text" id="reasonMultiple" name="reasonMultiple" required><br><br>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required><br><br>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" required><br><br>
+                <label for="noOfDays">No. of days:</label>
+                <input type="number" id="noOfDays" name="noOfDays" required><br><br>
+                <input type="submit" value="Apply Leave">
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <h2>Apply Medical Leave</h2>
+        <form action="/apply_medical_leave" method="post" enctype="multipart/form-data">
+            <label for="reasonMedical">Reason:</label>
+            <input type="text" id="reasonMedical" name="reasonMedical" required><br><br>
+            <label for="medicalStartDate">Start Date:</label>
+            <input type="date" id="medicalStartDate" name="medicalStartDate" required><br><br>
+            <label for="medicalEndDate">End Date:</label>
+            <input type="date" id="medicalEndDate" name="medicalEndDate" required><br><br>
+            <label for="medicalDocuments">Upload Medical Documents:</label>
+            <input type="file" id="medicalDocuments" name="medicalDocuments" required><br><br>
+            <label for="noOfDays">No. of days:</label>
+            <input type="number" id="noOfDays" name="noOfDays" required><br><br>
+            <input type="submit" value="Apply Medical Leave">
+        </form>
+    </div>
+
+    <div>
+        <h2>Leave Application Status</h2>
+        <table>
+            <tr>
+                <th>Application Number</th>
+                <th>Counsellor</th>
+                <th>HOD</th>
+                <th>Year Incharge</th>
+            </tr>
+            {% for application in leave_application %}
+            <tr>
+                <td>{{ application[10] }}</td>
+            <td class="{% if application[7] == 1 %} approved {% elif application[7] == 0 %} not-approved {% elif application[7] == -1 %} rejected {% endif %}">
+                {% if application[7] == 1 %}
+                    Approved
+                {% elif application[7] == 0 %}
+                    Yet to be Approved
+                {% elif application[7] == -1 %}
+                    Rejected
+                {% endif %}
+            </td>
+            <td class="{% if application[8] == 1 %} approved {% elif application[8] == 0 %} not-approved {% elif application[8] == -1 %} rejected {% endif %}">
+                {% if application[8] == 1 %}
+                    Approved
+                {% elif application[8] == 0 %}
+                    Yet to be Approved
+                {% elif application[8] == -1 %}
+                    Rejected
+                {% endif %}
+            </td>
+            <td class="{% if application[9] == 1 %} approved {% elif application[9] == 0 %} not-approved {% elif application[9] == -1 %} rejected {% endif %}">
+                {% if application[9] == 1 %}
+                    Approved
+                {% elif application[9] == 0 %}
+                    Yet to be Approved
+                {% elif application[9] == -1 %}
+                    Rejected
+                {% endif %}
+            </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+
+    <script src="{{pth}}/script.js"></script>
+</body>
+</html>

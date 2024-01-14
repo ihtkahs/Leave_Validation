@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard</title>
+    <link rel="stylesheet" href="{{pth}}/HODdb.css">
+</head>
+<body>
+    <h1>HOD Dashboard</h1>
+
+    <div class="filter-container">
+        <label for="leaveFilter">Filter by Number of Leaves Taken:</label>
+        <select id="leaveFilter" name="leaveFilter">
+            <option value="0-10">0-10</option>
+            <option value="11-20">11-20</option>
+            <option value="21-30">21-30</option>
+            <option value="31-40">31-40</option>
+            <option value="41-50">41-50</option>
+        </select>
+    </div>
+
+    <div class="student-requests">
+        <h2>Student Leave Requests</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Registration No</th>                
+                <th>Date</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Reason</th>
+                <th>No. of Leaves Taken</th>
+                <th>Action</th>
+            </tr>
+            {% for leave_application in leave_application %}
+            <tr>
+                <td>{{ leave_application[0] }}</td>
+                <td>{{ leave_application[1] }}</td>
+                <td>{{ leave_application[2] }}</td>
+                <td>{{ leave_application[3] }}</td>
+                <td>{{ leave_application[4] }}</td>
+                <td>{{ leave_application[5] }}</td>
+                <td>{{ leave_application[6] }}</td>
+                <td>
+                    <div class="button-container">
+                        <form action="/approve_leave_hod" method="post">
+                            <input type="hidden" name="application_no" value="{{ leave_application[10] }}">
+                            <button type="submit" name="action" value="approve">Approve</button>
+                        </form>
+                        <form action="/reject_leave_hod" method="post">
+                            <input type="hidden" name="application_no" value="{{ leave_application[10] }}">
+                            <button type="submit" name="action" value="reject">Reject</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="e-signature">
+        <h2>E-Signature</h2>
+        <div class="signature-container">
+            <canvas id="signatureCanvas" width="200" height="100" style="border:1px solid #000;"></canvas>
+            <div class="but">
+                <button onclick="clearSignature()">Clear</button>
+                <button onclick="saveSignature()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="approved-requests">
+        <h2>Approved Requests</h2>
+        <ul>
+            <li>John Doe - SJCE2023CS001</li>
+            <!-- Add more list items for other approved requests -->
+        </ul>
+    </div>
+
+    <div class="rejected-requests">
+        <h2>Rejected Requests</h2>
+        <ul>
+            <li>Jane Doe - SJCE2023EC001</li>
+            <!-- Add more list items for other rejected requests -->
+        </ul>
+    </div>
+</body>
+</html>

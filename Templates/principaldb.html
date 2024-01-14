@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Dashboard</title>
+    <link rel="stylesheet" href="{{pth}}/principaldb.css">
+</head>
+<body>
+    <h1>Principal Dashboard</h1>
+
+    <div class="filter-container">
+        <label for="leaveFilter">Filter by Number of Leaves Taken:</label>
+        <select id="leaveFilter" name="leaveFilter">
+            <option value="0-10">0-10</option>
+            <option value="11-20">11-20</option>
+            <option value="21-30">21-30</option>
+            <option value="31-40">31-40</option>
+            <option value="41-50">41-50</option>
+        </select>
+    </div>
+
+    <div class="student-details">
+        <h2>Student Leave Details</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Registration No</th>
+                <th>No. of Leaves Taken</th>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>Computer Science</td>
+                <td>SJCE2023CS001</td>
+                <td>5</td>
+            </tr>
+            <!-- Add more rows for other student details -->
+        </table>
+    </div>
+</body>
+</html>

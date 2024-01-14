@@ -1,0 +1,94 @@
+/* CSS styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-size: cover;
+    background-image: url("collegepic.jpg");
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.collegeName .moto{
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    font-family: Apple Chancery, cursive;
+}
+.collegeName h1{
+    color: white;
+    text-align: center;
+}
+.collegeName .Autonomous{
+    color: white;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.logo{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+.logo .pic{
+    width:100%;
+}
+
+.login-container {
+    margin-top: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-container .login-form h2{
+    color:white;
+    padding: 8px;
+    border-color: beige;
+    border: 3px solid white;
+    border-radius: 5px;
+    background-color: rgba(207, 223, 238, 0.39);
+}
+.login-form {
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+

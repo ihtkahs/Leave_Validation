@@ -1,0 +1,43 @@
+def login():
+    username=request.form["username"]
+    password=request.form["password"]
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM student WHERE username = %s AND password = %s", (username, password))
+    user = cur.fetchone()
+    cur.close()
+
+    if user:
+        if user['username']==username and user['password']==password:
+            return [username,password]
+    else:
+        return False
+    
+@app.route('/login', methods=["GET","POST"])
+def counsellor_login():
+    if request.method=="GET":
+        return render_template('student.html')
+    if request.method=="POST":
+        if login():
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+        else:
+            return 'Invalid username or password'
+        
+@app.route('/studentdb')
+def dashboard():
+    if 'username' in session:
+        if session['username'] == 'student':  # Change this condition based on your user role
+            return redirect(url_for('student_dashboard'))
+        else:
+            return 'You do not have permission to access this page'
+    else:
+        return redirect(url_for('index'))
+
+@app.route('/student_dashboard')
+def student_dashboard():
+    if 'username' in session:
+        return render_template('studentdb.html')
+    else:
+        return redirect(url_for('index'))
+    

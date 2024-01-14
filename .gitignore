@@ -1,0 +1,8 @@
+# .gitignore
+__pycache__/
+env/
+static/photos/
+static/package.json
+static/package-lock.json
+uploads/
+node_modules/
